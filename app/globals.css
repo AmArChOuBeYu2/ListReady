@@ -1,8 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FAFAF9;
+  --foreground: #18181B;
+  --surface: #FFFFFF;
+  --surface-alt: #F4F3F1;
+  --border: #E4E4E7;
+  --border-subtle: #F4F4F5;
+  --text-primary: #18181B;
+  --text-secondary: #52525B;
+  --text-tertiary: #A1A1AA;
+  --brand: #5B21B6;
+  --brand-mid: #7C3AED;
+  --brand-light: #EDE9FE;
+  --success: #16A34A;
+  --success-bg: #DCFCE7;
+  --warning: #D97706;
+  --warning-bg: #FEF3C7;
+  --review: #9333EA;
+  --review-bg: #F3E8FF;
+  --error: #DC2626;
+  --error-bg: #FEE2E2;
 }
 
 @theme inline {
@@ -12,15 +30,104 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Restrained scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--surface-alt); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
+
+/* Focus visible ring — accessibility */
+:focus-visible {
+  outline: 2px solid var(--brand-mid);
+  outline-offset: 2px;
+}
+
+/* Transition defaults */
+a, button { transition: color 0.15s, background-color 0.15s, border-color 0.15s, opacity 0.15s; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Section spacing utility */
+.section-padding {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+
+/* Status badge utilities */
+.badge-pass {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid #BBF7D0;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-geist-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-autofix {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--warning-bg);
+  color: var(--warning);
+  border: 1px solid #FDE68A;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-geist-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-review {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--review-bg);
+  color: var(--review);
+  border: 1px solid #DDD6FE;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-geist-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
